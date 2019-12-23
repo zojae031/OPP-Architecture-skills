@@ -11,8 +11,6 @@ public class Example1 {
         try {
             int input = in.read();
             System.out.println(input);
-	
-	System.out.println("ddd");
             out.write(input);
             out.close();
         } catch (IOException e) {
