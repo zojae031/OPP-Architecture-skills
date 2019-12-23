@@ -18,6 +18,7 @@ public class AddressController implements ActionListener, KeyListener {
 
     public AddressController(AddressPanel panel) {
         pnl = panel;
+        pnl.attachActionListenser(this::actionPerformed);
     }
 
     @Override

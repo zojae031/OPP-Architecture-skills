@@ -5,8 +5,10 @@ import util.AddressConstants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
-public class AddressPanel extends JPanel {
+public class AddressPanel extends JPanel implements View {
     private JPanel pnlSearch, pnlAddNDeleteAddress;
     private JComboBox comboBox;
     private JTextField txtSearch, txtAddName, txtAddAge, txtAddPhoneNumber;
@@ -17,9 +19,9 @@ public class AddressPanel extends JPanel {
         setBackground(Color.white);
         setPreferredSize(new Dimension(500, 500));
         setLayout(new BorderLayout());
-
         setInitSearchPanel();
         setInitAddInfoPanel();
+        LAddress = new AddressController(this);
     }
 
     private void setInitSearchPanel() {
@@ -147,6 +149,20 @@ public class AddressPanel extends JPanel {
     public int getComboBoxIndex() {
         return comboBox.getSelectedIndex();
     }
+
+
     //=============Getter And Setter===================
 
+
+    @Override
+    public void attachActionListenser(ActionListener listener) {
+        btnAddInfo.addActionListener(listener);
+        btnDelete.addActionListener(listener);
+        btnSearch.addActionListener(listener);
+    }
+
+    @Override
+    public void attachKeyListener(KeyListener listener) {
+        comboBox.addKeyListener(listener);
+    }
 }
