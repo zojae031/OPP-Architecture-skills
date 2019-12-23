@@ -6,22 +6,20 @@ import java.awt.*;
 
 public class MainView extends JFrame implements View {
     private JMenuBar menuBar = new JMenuBar();
-    private JMenu menu = new JMenu("상위 메뉴");
-
-    private final String[] menuList = new String[]{"파일", "편집"};
-    private final String[] fileItem = new String[]{"새 문서", "열기", "닫기"};
 
     private final JMenu fileMenu = new JMenu("파일");
     private final JMenu editMenu = new JMenu("편집");
 
+    private final JMenuItem newItem = new JMenuItem("새 문서");
+    private final JMenuItem openItem = new JMenuItem("열기");
+    private final JMenuItem closeItem = new JMenuItem("닫기");
+
+    private JLabel label = new JLabel("라벨");
 
     @Override
     public void initView() {
         defaultSetting();
         menuSetting();
-        menu.addActionListener(e -> {
-
-        });
         setSize(300, 200);
         setVisible(true);
     }
@@ -30,19 +28,30 @@ public class MainView extends JFrame implements View {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("NotePad");
         setLayout(new FlowLayout());
-        JLabel label = new JLabel("라벨");
         add(label);
-
-
     }
 
     private void menuSetting() {
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
-        for (String item : fileItem) {
-            fileMenu.add(new JMenuItem(item));
-        }
+
+        fileMenu.add(newItem);
+        newItem.addActionListener(e -> {
+            label.setText("[" + newItem.getText() + "] 를 선택했습니다.");
+        });
+        fileMenu.add(openItem);
+        openItem.addActionListener(e -> {
+            label.setText("[" + openItem.getText() + "] 를 선택했습니다.");
+        });
+        fileMenu.add(closeItem);
+        closeItem.addActionListener(e -> {
+            System.exit(0);
+        });
+
+
         setJMenuBar(menuBar);
+
+
     }
 }
 
