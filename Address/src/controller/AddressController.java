@@ -1,5 +1,8 @@
 package controller;
 
+import data.DataSource;
+import data.DataSourceImpl;
+import data.dao.AddressDataModel;
 import ui.AddressPanel;
 import util.AddressConstants;
 
@@ -8,8 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 public class AddressController implements ActionListener, KeyListener {
     private AddressPanel pnl;
+    private final DataSource dataSource = DataSourceImpl.getInstance();
 
     public AddressController(AddressPanel panel) {
         pnl = panel;
@@ -19,7 +24,7 @@ public class AddressController implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == pnl.getBtnAddInfo()) {
-
+            insert();
         }//Add Info
 
         if (obj == pnl.getBtnDelete()) {
@@ -31,6 +36,20 @@ public class AddressController implements ActionListener, KeyListener {
         }//Search Info
     }
 
+    private void insert() {
+        String name = pnl.getTxtAddName().getText();
+        int age = Integer.parseInt(pnl.getTxtAddAge().getText());
+        String phone = pnl.getTxtAddPhoneNumber().getText();
+
+        AddressDataModel model = new AddressDataModel(age, name, phone);//TODO util class 분리 가능
+
+        dataSource.insert(model);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -52,8 +71,5 @@ public class AddressController implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
 
 }

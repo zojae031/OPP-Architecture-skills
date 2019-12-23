@@ -1,5 +1,8 @@
 package data;
 
-public class DataSource {
-    
+import data.dao.AddressDataModel;
+
+public interface DataSource {
+    void insert(AddressDataModel model);
+
 }
