@@ -2,6 +2,7 @@ package notepad.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
 public class MainView extends JFrame implements View {
@@ -36,22 +37,23 @@ public class MainView extends JFrame implements View {
         menuBar.add(editMenu);
 
         fileMenu.add(newItem);
-        newItem.addActionListener(e -> {
-            label.setText("[" + newItem.getText() + "] 를 선택했습니다.");
-        });
         fileMenu.add(openItem);
-        openItem.addActionListener(e -> {
-            label.setText("[" + openItem.getText() + "] 를 선택했습니다.");
-        });
+        fileMenu.addSeparator();
         fileMenu.add(closeItem);
-        closeItem.addActionListener(e -> {
-            System.exit(0);
-        });
-
 
         setJMenuBar(menuBar);
+    }
 
+    @Override
+    public void changeLabel(String text) {
+        label.setText("[" + text + "] 를 선택했습니다.");
+    }
 
+    @Override
+    public void setItemActionListener(ActionListener listener) {
+        newItem.addActionListener(listener);
+        openItem.addActionListener(listener);
+        closeItem.addActionListener(listener);
     }
 }
 

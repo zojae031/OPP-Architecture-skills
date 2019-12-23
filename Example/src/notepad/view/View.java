@@ -1,5 +1,12 @@
 package notepad.view;
 
+import java.awt.event.ActionListener;
+
 public interface View {
-    public void initView();
+    void initView();
+
+    void setItemActionListener(ActionListener listener);
+
+    void changeLabel(String text);
+
 }
