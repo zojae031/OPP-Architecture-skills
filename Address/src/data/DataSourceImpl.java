@@ -3,9 +3,7 @@ package data;
 import com.google.gson.Gson;
 import data.dao.AddressDataModel;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * SingleTon Pattern을 적용한 DataSource (Model Class)
@@ -39,6 +37,30 @@ public class DataSourceImpl implements DataSource {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String select() {
+        File f = new File(fname);
+        String str = "";
+
+        if (!f.exists()) {
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(fname));
+                bw.close();
+                BufferedReader br = new BufferedReader(new FileReader(fname));
+                for (int i = 1; ; i++) {
+                    if (!br.ready()) break;
+                    else {
+                        str = br.readLine();
+                    }
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return str;
     }
 
     public static DataSource getInstance() {
