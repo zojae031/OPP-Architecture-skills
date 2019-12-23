@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 
 public class AddressController implements ActionListener, KeyListener {
@@ -30,7 +31,7 @@ public class AddressController implements ActionListener, KeyListener {
         }//Add Info
 
         if (obj == pnl.getBtnDelete()) {
-
+            delete();
         }//Delete Info
 
         if (obj == pnl.getBtnSearch()) {
@@ -48,6 +49,7 @@ public class AddressController implements ActionListener, KeyListener {
         dataSource.insert(model);
     }
 
+
     private void select() {
         String text = pnl.getTxtSearch().getText();
         if (text.equals("")) {//빈칸이면 모두 검색
@@ -55,6 +57,12 @@ public class AddressController implements ActionListener, KeyListener {
         } else {//그렇지 않다면 선택 검색색
 
         }
+    }
+
+    private void delete(){
+        int index = pnl.getJTableIndex();
+        dataSource.delete(index);
+
     }
 
     @Override

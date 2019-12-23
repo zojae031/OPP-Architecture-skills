@@ -151,7 +151,8 @@ public class AddressPanel extends JPanel implements View {
         return comboBox.getSelectedIndex();
     }
 
-
+    // TODO: 2019-12-24 Have to Fix return
+    public int getJTableIndex(){return 0;}
     //=============Getter And Setter===================
 
 

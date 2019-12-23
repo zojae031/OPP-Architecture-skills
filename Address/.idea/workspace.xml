@@ -3,11 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="e47f7da5-70f4-4313-ab28-741784c0d604" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddressController.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/juso.txt" beforeDir="false" afterPath="$PROJECT_DIR$/juso.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Address/AddressControler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Address/META-INF/Address.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Address/data/DataSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Address/data/DataSource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/DataSource.java" afterDir="false" />
+>>>>>>> e959efd0a14de2382deb8c2c978cc50f03d461a5
       <change beforePath="$PROJECT_DIR$/src/data/DataSourceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/DataSourceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/AddressPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/AddressPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/View.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +50,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../19-2/JavaTeamProject/MusicChartWithCommunity" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -51,6 +61,18 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -66,18 +88,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -90,6 +100,7 @@
       <updated>1577092170401</updated>
       <workItem from="1577092174270" duration="3835000" />
       <workItem from="1577117931370" duration="942000" />
+      <workItem from="1577124402657" duration="1636000" />
     </task>
     <task id="LOCAL-00001" summary="Fix Error">
       <created>1577118246655</created>
@@ -105,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577118395755</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Create Read Txt at DataSourceImpl">
+      <created>1577125357187</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1577125357187</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +144,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix Error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Error" />
+    <MESSAGE value="Create Read Txt at DataSourceImpl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create Read Txt at DataSourceImpl" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1577126320692">
