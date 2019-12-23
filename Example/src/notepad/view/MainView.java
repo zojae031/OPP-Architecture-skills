@@ -1,5 +1,8 @@
 package notepad.view;
 
+import notepad.data.dao.EditDao;
+import notepad.data.dao.FileDao;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -12,20 +15,15 @@ import java.io.File;
 public class MainView extends JFrame implements View {
     private JMenuBar menuBar = new JMenuBar();
 
-    private final JMenu fileMenu = new JMenu("파일");
-    private final JMenu editMenu = new JMenu("편집");
-
-    private final JMenuItem newItem = new JMenuItem("새 문서");
-    private final JMenuItem saveItem = new JMenuItem("저장");
-    private final JMenuItem openItem = new JMenuItem("열기");
-    private final JMenuItem closeItem = new JMenuItem("닫기");
+    FileDao fileDao = new FileDao();
+    EditDao editDao = new EditDao();
 
     private final JTextArea textArea = new JTextArea();
-    private final JTextField textField = new JTextField(100);
 
     JToolBar toolBar = new JToolBar();
     JButton item = new JButton("item");
 
+    private static final int BASE_FONT_SIZE = 12;
 
     @Override
     public void initView() {
@@ -69,19 +67,23 @@ public class MainView extends JFrame implements View {
     }
 
     private void textAreaSetting() {
-        textArea.add(textField);
         add(textArea, BorderLayout.CENTER);
     }
 
     private void menuSetting() {
-        menuBar.add(fileMenu);
-        menuBar.add(editMenu);
+        menuBar.add(fileDao.fileMenu);
 
-        fileMenu.add(newItem);
-        fileMenu.add(saveItem);
-        fileMenu.add(openItem);
-        fileMenu.addSeparator();
-        fileMenu.add(closeItem);
+
+        fileDao.fileMenu.add(fileDao.newItem);
+        fileDao.fileMenu.add(fileDao.saveItem);
+        fileDao.fileMenu.add(fileDao.openItem);
+        fileDao.fileMenu.addSeparator();
+        fileDao.fileMenu.add(fileDao.closeItem);
+
+        menuBar.add(editDao.editMenu);
+        editDao.editMenu.add(editDao.small);
+        editDao.editMenu.add(editDao.normal);
+        editDao.editMenu.add(editDao.larger);
 
         setJMenuBar(menuBar);
     }
@@ -93,10 +95,14 @@ public class MainView extends JFrame implements View {
 
     @Override
     public void setItemActionListener(ActionListener listener) {
-        newItem.addActionListener(listener);
-        openItem.addActionListener(listener);
-        saveItem.addActionListener(listener);
-        closeItem.addActionListener(listener);
+        fileDao.newItem.addActionListener(listener);
+        fileDao.openItem.addActionListener(listener);
+        fileDao.saveItem.addActionListener(listener);
+        fileDao.closeItem.addActionListener(listener);
+
+        editDao.small.addActionListener(listener);
+        editDao.normal.addActionListener(listener);
+        editDao.larger.addActionListener(listener);
     }
 
     @Override
@@ -118,6 +124,12 @@ public class MainView extends JFrame implements View {
     @Override
     public void changeTitle(String text) {
         setTitle(text);
+    }
+
+    @Override
+    public void setFontSize(int size) {
+        Font font = size == 0 ? new Font("Arial", Font.BOLD, BASE_FONT_SIZE) : new Font("Arial", Font.BOLD, textArea.getFont().getSize() + size);
+        textArea.setFont(font);
     }
 }
 

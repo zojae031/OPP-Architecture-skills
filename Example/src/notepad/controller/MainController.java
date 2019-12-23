@@ -43,6 +43,15 @@ public class MainController implements Controller, ActionListener {
             case "열기":
                 open();
                 break;
+            case "작게":
+                view.setFontSize(-2);
+                break;
+            case "보통":
+                view.setFontSize(0);
+                break;
+            case "크게":
+                view.setFontSize(+2);
+                break;
             default:
 
                 break;
