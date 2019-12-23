@@ -24,10 +24,7 @@ public class LocalDataSourceImpl implements LocalDataSource {
             String str;
             BufferedReader br = new BufferedReader(new FileReader(file));
             while ((str = br.readLine()) != null) {
-                System.out.println(str);
             }
-
-
             return str;
         } catch (IOException e) {
             e.printStackTrace();
