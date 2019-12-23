@@ -19,28 +19,44 @@ public class DataSourceImpl implements DataSource {
     private ArrayList<AddressDataModel> listData;
     private BufferedWriter bw;
     private BufferedReader br;
+
     private DataSourceImpl() {
         listData = new ArrayList<>();
         try {
-            bw = new BufferedWriter(new FileWriter(fname, true));
             br = new BufferedReader(new FileReader(fname));
             String strline = "";
-            while( (strline = br.readLine()) != null){
-                AddressDataModel model = new Gson().fromJson(strline,AddressDataModel.class);
+            while ((strline = br.readLine()) != null) {
+                System.out.println(strline);
+                AddressDataModel model = new Gson().fromJson(strline, AddressDataModel.class);
                 listData.add(model);
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    public void delete(int index) {
+        System.out.println("Delete");
+        listData.remove(index);
+        try {
+            bw = new BufferedWriter(new FileWriter(fname, false));
+            for (AddressDataModel model : listData) {
+                bw.write(new Gson().toJson(model));
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void insert(AddressDataModel model) {
         listData.add(model);
         String json = new Gson().toJson(model);
         try {
+            bw = new BufferedWriter(new FileWriter(fname, true));
             bw.write(json);
             bw.newLine();
             bw.close();
