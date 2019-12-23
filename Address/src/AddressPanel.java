@@ -48,10 +48,14 @@ public class AddressPanel extends JPanel {
 
         btnAddInfo = new JButton("Register");
 
+        btnDelete = new JButton("Delete");
+
         pnlAddNDeleteAddress.add(txtAddName);
         pnlAddNDeleteAddress.add(txtAddAge);
         pnlAddNDeleteAddress.add(txtAddPhoneNumber);
         pnlAddNDeleteAddress.add(btnAddInfo);
+        pnlAddNDeleteAddress.add(new JLabel("||"));
+        pnlAddNDeleteAddress.add(btnDelete);
     }
 
     //=============Getter And Setter===================
