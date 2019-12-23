@@ -3,11 +3,9 @@ package data;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import data.dao.AddressDataModel;
 
 import java.io.*;
-import java.util.ArrayList;
 
 
 /**
@@ -30,10 +28,11 @@ public class DataSourceImpl implements DataSource {
             br = new BufferedReader(new FileReader(fname));
             String strline = "";
             while ((strline = br.readLine()) != null) {
-
                 AddressDataModel model = new Gson().fromJson(strline, AddressDataModel.class);
                 listData.add(new Gson().toJson(model));
-                System.out.println(new Gson().toJson(listData.get(0)));
+            }
+            for (JsonElement data : listData) {
+                System.out.println(new Gson().toJson(data));
             }
             br.close();
         } catch (IOException e) {
@@ -72,34 +71,9 @@ public class DataSourceImpl implements DataSource {
 
     @Override
     public String select() {
-        File f = new File(fname);
-        String str = "";
+       System.out.println(listData.toString());
 
-        if (!f.exists()) {
-            try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(fname));
-                bw.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(fname));
-            for (int i = 1; ; i++) {
-                if (!br.ready()) break;
-                else {
-                    str = br.readLine();
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return str;
+        return "";
     }
 
     public static DataSource getInstance() {
