@@ -31,23 +31,40 @@ public class MainController implements Controller, ActionListener {
                 System.exit(0);
                 break;
             case "새 문서":
-
+                int result = view.newFile();
+                if (result == 0) {
+                    save();
+                    clearState();
+                }
                 break;
             case "저장":
-                String text = view.getEditText();
-                File savePath = view.showSaveFileChooser();
-                repository.save(text, savePath);
+                save();
                 break;
             case "열기":
-                File openPath = view.showOpenFileChoose();
-                String loadData = repository.load(openPath);
-                System.out.println(loadData);
-                view.setEditText(loadData);
+                open();
                 break;
             default:
 
                 break;
         }
-
     }
+
+    private void save() {
+        String text = view.getEditText();
+        File savePath = view.showSaveFileChooser();
+        repository.save(text, savePath);
+    }
+
+    private void open() {
+        File openPath = view.showOpenFileChoose();
+        String loadData = repository.load(openPath);
+        System.out.println(loadData);
+        view.setEditText(loadData);
+    }
+
+    private void clearState() {
+        view.clearView();
+        view.changeTitle("NotePad");
+    }
+
 }

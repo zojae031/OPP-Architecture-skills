@@ -64,8 +64,8 @@ public class MainView extends JFrame implements View {
     }
 
     private void toolbarSetting() {
-        add(toolBar);
-        toolBar.add(item, BorderLayout.NORTH);
+        add(toolBar, BorderLayout.NORTH);
+        toolBar.add(item);
     }
 
     private void textAreaSetting() {
@@ -86,6 +86,10 @@ public class MainView extends JFrame implements View {
         setJMenuBar(menuBar);
     }
 
+    @Override
+    public int newFile() {
+        return JOptionPane.showConfirmDialog(this, "저장하시겠습니까?");
+    }
 
     @Override
     public void setItemActionListener(ActionListener listener) {
@@ -103,6 +107,17 @@ public class MainView extends JFrame implements View {
     @Override
     public void setEditText(String text) {
         textArea.setText(text);
+    }
+
+
+    @Override
+    public void clearView() {
+        textArea.setText("");
+    }
+
+    @Override
+    public void changeTitle(String text) {
+        setTitle(text);
     }
 }
 

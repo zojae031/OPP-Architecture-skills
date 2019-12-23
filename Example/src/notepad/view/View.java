@@ -12,8 +12,14 @@ public interface View {
 
     File showOpenFileChoose();
 
+    int newFile();
+
     String getEditText();
 
     void setEditText(String text);
+
+    void clearView();
+
+    void changeTitle(String text);
 
 }
