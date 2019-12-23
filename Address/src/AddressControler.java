@@ -31,13 +31,13 @@ public class AddressControler implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         Object obj = e.getSource();
         if(obj == pnl.getTxtSearch()){
-            if(pnl.getComboBox().getSelectedIndex() == AddressConstants.SearchToName){
+            if(pnl.getComboBoxIndex() == AddressConstants.SearchToName){
 
             }
-            if(pnl.getComboBox().getSelectedIndex() == AddressConstants.SearchToAge){
+            if(pnl.getComboBoxIndex() == AddressConstants.SearchToAge){
 
             }
-            if(pnl.getComboBox().getSelectedIndex() == AddressConstants.SearchToPhoneNumber){
+            if(pnl.getComboBoxIndex() == AddressConstants.SearchToPhoneNumber){
 
             }
         }

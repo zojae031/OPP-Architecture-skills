@@ -80,6 +80,8 @@ public class AddressPanel extends JPanel {
     public void setTxtAddName(JTextField txtAddName) { this.txtAddName = txtAddName; }
     public void setTxtAddPhoneNumber(JTextField txtAddPhoneNumber) { this.txtAddPhoneNumber = txtAddPhoneNumber; }
     public void setTxtSearch(JTextField txtSearch) { this.txtSearch = txtSearch; }
+
+    public int getComboBoxIndex(){return comboBox.getSelectedIndex();}
     //=============Getter And Setter===================
 
 }
