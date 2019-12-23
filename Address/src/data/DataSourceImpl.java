@@ -3,9 +3,8 @@ package data;
 import com.google.gson.Gson;
 import data.dao.AddressDataModel;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * SingleTon Pattern을 적용한 DataSource (Model Class)
@@ -17,20 +16,29 @@ import java.io.IOException;
 public class DataSourceImpl implements DataSource {
     private static DataSource INSTANCE = null;
     private final static String fname = "./juso.txt";
-
+    private ArrayList<AddressDataModel> listData;
     private BufferedWriter bw;
-
+    private BufferedReader br;
     private DataSourceImpl() {
+        listData = new ArrayList<>();
         try {
             bw = new BufferedWriter(new FileWriter(fname, true));
+            br = new BufferedReader(new FileReader(fname));
+            String strline = "";
+            while( (strline = br.readLine()) != null){
+                AddressDataModel model = new Gson().fromJson(strline,AddressDataModel.class);
+                listData.add(model);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
     @Override
     public void insert(AddressDataModel model) {
+        listData.add(model);
         String json = new Gson().toJson(model);
         try {
             bw.write(json);
