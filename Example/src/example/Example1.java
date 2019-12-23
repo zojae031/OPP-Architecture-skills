@@ -1,13 +1,14 @@
+package example;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-public class Example2 {
+public class Example1 {
     public static void main(String[] args) {
-        InputStreamReader in = new InputStreamReader(System.in);
-        OutputStreamWriter out = new OutputStreamWriter(System.out);
-
-        try{
+        InputStream in = System.in;
+        OutputStream out = System.out;
+        try {
             int input = in.read();
             System.out.println(input);
             out.write(input);
@@ -16,4 +17,5 @@ public class Example2 {
             e.printStackTrace();
         }
     }
+
 }
