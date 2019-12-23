@@ -1,3 +1,5 @@
+package data.dao;
+
 public class AddressDataModel {
     public int age;
     public String name;
