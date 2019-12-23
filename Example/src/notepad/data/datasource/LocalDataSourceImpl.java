@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class LocalDataSourceImpl implements LocalDataSource {
-
     @Override
     public void saveText(String text, File path) {
         try {

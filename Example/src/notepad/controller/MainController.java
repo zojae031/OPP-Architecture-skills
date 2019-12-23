@@ -25,7 +25,7 @@ public class MainController implements Controller, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String commend = e.getActionCommand();
-        System.out.println(commend);
+        System.out.println("눌린 이벤트 : commend");
         switch (commend) {
             case "닫기":
                 System.exit(0);
@@ -34,11 +34,14 @@ public class MainController implements Controller, ActionListener {
                 int result = view.newFile();
                 if (result == 0) {
                     save();
-                    clearState();
                 }
+                clearState();
                 break;
             case "저장":
                 save();
+                break;
+            case "다른이름으로 저장":
+                saveAnotherState();
                 break;
             case "열기":
                 open();
@@ -61,6 +64,18 @@ public class MainController implements Controller, ActionListener {
 
     private void save() {
         String text = view.getEditText();
+        String title = view.getFileName();
+        System.out.println("타이틀 : " + title);
+        if (title.equals("NotePad")) {//기본일때
+            File savePath = view.showSaveFileChooser();
+            repository.save(text, savePath);
+        } else {
+            repository.save(text, new File(title));
+        }
+    }
+
+    private void saveAnotherState() {
+        String text = view.getEditText();
         File savePath = view.showSaveFileChooser();
         repository.save(text, savePath);
     }
@@ -68,7 +83,7 @@ public class MainController implements Controller, ActionListener {
     private void open() {
         File openPath = view.showOpenFileChoose();
         String loadData = repository.load(openPath);
-        System.out.println(loadData);
+        System.out.println("읽어온 데이터 " + loadData);
         view.setEditText(loadData);
     }
 

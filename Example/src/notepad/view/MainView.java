@@ -24,34 +24,38 @@ public class MainView extends JFrame implements View {
 
     private static final int BASE_FONT_SIZE = 12;
 
+
     @Override
     public void initView() {
         defaultSetting();
         menuSetting();
         toolbarSetting();
         textAreaSetting();
-        setSize(500, 500);
+        setSize(800, 500);
         setVisible(true);
     }
 
     @Override
     public File showOpenFileChoose() {
         JFileChooser fileChooser = new JFileChooser("./");
-        File path = null;
-        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            path = fileChooser.getSelectedFile();
-        }
+        fileChooser.showOpenDialog(this);
+        File path = fileChooser.getSelectedFile();
+        setTitle(fileChooser.getSelectedFile().getName());
         return path;
     }
 
     @Override
     public File showSaveFileChooser() {
         JFileChooser fileChooser = new JFileChooser("./");
-        File path = null;
-        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-            path = fileChooser.getSelectedFile();
-        }
+        fileChooser.showSaveDialog(this);
+        File path = fileChooser.getSelectedFile();
+        setTitle(path.getName());
         return path;
+    }
+
+    @Override
+    public String getFileName() {
+        return this.getTitle();
     }
 
     private void defaultSetting() {
@@ -64,6 +68,7 @@ public class MainView extends JFrame implements View {
         add(toolbarDao.toolBar, BorderLayout.NORTH);
         toolbarDao.toolBar.add(toolbarDao.newItem);
         toolbarDao.toolBar.add(toolbarDao.saveItem);
+        toolbarDao.toolBar.add(toolbarDao.anotherSaveItem);
         toolbarDao.toolBar.add(toolbarDao.openItem);
         toolbarDao.toolBar.add(toolbarDao.closeItem);
         toolbarDao.toolBar.addSeparator(new Dimension(10, 10));
@@ -125,6 +130,7 @@ public class MainView extends JFrame implements View {
         toolbarDao.normal.addActionListener(listener);
         toolbarDao.larger.addActionListener(listener);
         toolbarDao.info.addActionListener(listener);
+        toolbarDao.anotherSaveItem.addActionListener(listener);
     }
 
     @Override

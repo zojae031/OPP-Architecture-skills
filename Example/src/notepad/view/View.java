@@ -25,4 +25,6 @@ public interface View {
     void setFontSize(int size);
 
     void showDialog();
+
+    String getFileName();
 }
