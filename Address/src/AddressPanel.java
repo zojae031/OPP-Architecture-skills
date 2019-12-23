@@ -6,7 +6,7 @@ public class AddressPanel extends JPanel {
     private JComboBox comboBox;
     private JTextField txtSearch,txtAddName,txtAddAge,txtAddPhoneNumber;
     private JButton btnSearch,btnAddInfo,btnDelete;
-    private AddressControler LAddress;
+    private AddressController LAddress;
 
     public AddressPanel(){
         setBackground(Color.white);

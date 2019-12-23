@@ -3,10 +3,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class AddressControler implements ActionListener, KeyListener {
+public class AddressController implements ActionListener, KeyListener {
     private AddressPanel pnl;
 
-    public AddressControler(AddressPanel panel){
+    public AddressController(AddressPanel panel){
         pnl = panel;
     }
 
