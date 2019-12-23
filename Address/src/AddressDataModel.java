@@ -3,7 +3,7 @@ public class AddressDataModel {
     public String name;
     public String Phonenumber;
 
-    public AddressDataModel(){
+    public AddressDataModel() {
         age = 0;
         name = "NONE";
         Phonenumber = "NONE";
