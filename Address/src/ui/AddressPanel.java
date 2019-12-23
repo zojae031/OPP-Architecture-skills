@@ -1,6 +1,7 @@
 package ui;
 
 import controller.AddressController;
+import data.dao.AddressDataModel;
 import util.AddressConstants;
 
 import javax.swing.*;
@@ -164,5 +165,10 @@ public class AddressPanel extends JPanel implements View {
     @Override
     public void attachKeyListener(KeyListener listener) {
         comboBox.addKeyListener(listener);
+    }
+
+    @Override
+    public void showSelectList(AddressDataModel model) {
+        System.out.println(model.name + " " + model.age + " " + model.PhoneNumber);
     }
 }
