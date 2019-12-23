@@ -20,7 +20,8 @@ public class MainView extends JFrame implements View {
     private final JMenuItem closeItem = new JMenuItem("닫기");
 
     private final JPanel panel = new JPanel();
-    private final JTextField textField = new JTextField();
+    private final JTextArea textArea = new JTextArea();
+    private final JTextField textField = new JTextField(100);
     private JLabel label = new JLabel("라벨");
 
     @Override
@@ -37,7 +38,8 @@ public class MainView extends JFrame implements View {
         setLayout(new BorderLayout());
 
         add(label, BorderLayout.NORTH);
-        add(textField, BorderLayout.CENTER);
+        textArea.add(textField);
+        add(textArea, BorderLayout.CENTER);
 
     }
 
@@ -69,12 +71,12 @@ public class MainView extends JFrame implements View {
 
     @Override
     public String getEditText() {
-        return textField.getText();
+        return textArea.getText();
     }
 
     @Override
     public void setEditText(String text) {
-        textField.setText(text);
+        textArea.setText(text);
     }
 }
 

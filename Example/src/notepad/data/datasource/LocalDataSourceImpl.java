@@ -1,6 +1,9 @@
 package notepad.data.datasource;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class LocalDataSourceImpl implements LocalDataSource {
     final String path = "./sample.txt";
@@ -12,6 +15,7 @@ public class LocalDataSourceImpl implements LocalDataSource {
         try {
             FileWriter fw = new FileWriter(file);
             fw.write(text);
+            System.out.println("저장된 데이터 : " + text);
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -21,11 +25,13 @@ public class LocalDataSourceImpl implements LocalDataSource {
     @Override
     public String getText() {
         try {
-            String str;
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            while ((str = br.readLine()) != null) {
+            char[] charArray = new char[128];
+            FileReader fr = new FileReader(file);
+            while (fr.read(charArray) != -1) {
+
             }
-            return str;
+            fr.close();
+            return String.valueOf(charArray);
         } catch (IOException e) {
             e.printStackTrace();
         }

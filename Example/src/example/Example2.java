@@ -8,7 +8,6 @@ public class Example2 {
     public static void main(String[] args) {
         InputStreamReader in = new InputStreamReader(System.in);
         OutputStreamWriter out = new OutputStreamWriter(System.out);
-
         try{
             int input = in.read();
             System.out.println(input);

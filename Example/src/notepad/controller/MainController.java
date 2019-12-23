@@ -34,10 +34,12 @@ public class MainController implements Controller, ActionListener {
                 break;
             case "저장":
                 String text = view.getEditText();
+
                 repository.save(text);
                 break;
             case "열기":
                 String loadData = repository.load();
+                System.out.println(loadData);
                 view.setEditText(loadData);
                 break;
             default:
