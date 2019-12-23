@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import data.DataSource;
 import data.DataSourceImpl;
 import data.dao.AddressDataModel;
@@ -34,7 +35,7 @@ public class AddressController implements ActionListener, KeyListener {
         }//Delete Info
 
         if (obj == pnl.getBtnSearch()) {
-
+            select();
         }//Search Info
     }
 
@@ -48,9 +49,20 @@ public class AddressController implements ActionListener, KeyListener {
         dataSource.insert(model);
     }
 
+
+    private void select() {
+        String text = pnl.getTxtSearch().getText();
+        if (text.equals("")) {//빈칸이면 모두 검색
+            pnl.showSelectList((AddressDataModel) new Gson().fromJson(dataSource.select(), AddressDataModel.class));
+        } else {//그렇지 않다면 선택 검색색
+
+        }
+    }
+
     private void delete(){
         int index = pnl.getJTableIndex();
         dataSource.delete(index);
+
     }
 
     @Override
