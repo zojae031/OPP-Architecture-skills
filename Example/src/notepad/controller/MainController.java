@@ -5,6 +5,7 @@ import notepad.view.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MainController implements Controller, ActionListener {
     View view;
@@ -30,20 +31,21 @@ public class MainController implements Controller, ActionListener {
                 System.exit(0);
                 break;
             case "새 문서":
-                view.changeLabel(commend);
+
                 break;
             case "저장":
                 String text = view.getEditText();
-
-                repository.save(text);
+                File savePath = view.showSaveFileChooser();
+                repository.save(text, savePath);
                 break;
             case "열기":
-                String loadData = repository.load();
+                File openPath = view.showOpenFileChoose();
+                String loadData = repository.load(openPath);
                 System.out.println(loadData);
                 view.setEditText(loadData);
                 break;
             default:
-                view.changeLabel(commend);
+
                 break;
         }
 

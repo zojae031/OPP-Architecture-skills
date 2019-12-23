@@ -1,7 +1,9 @@
 package notepad.data;
 
-public interface Repository {
-    void save(String text);
+import java.io.File;
 
-    String load();
+public interface Repository {
+    void save(String text, File path);
+
+    String load(File path);
 }

@@ -6,14 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class LocalDataSourceImpl implements LocalDataSource {
-    final String path = "./sample.txt";
-    File file = new File(path);
-
 
     @Override
-    public void saveText(String text) {
+    public void saveText(String text, File path) {
         try {
-            FileWriter fw = new FileWriter(file);
+            FileWriter fw = new FileWriter(path);
             fw.write(text);
             System.out.println("저장된 데이터 : " + text);
             fw.close();
@@ -23,10 +20,10 @@ public class LocalDataSourceImpl implements LocalDataSource {
     }
 
     @Override
-    public String getText() {
+    public String getText(File path) {
         try {
             char[] charArray = new char[128];
-            FileReader fr = new FileReader(file);
+            FileReader fr = new FileReader(path);
             while (fr.read(charArray) != -1) {
 
             }

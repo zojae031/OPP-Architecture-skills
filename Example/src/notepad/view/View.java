@@ -1,13 +1,16 @@
 package notepad.view;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public interface View {
     void initView();
 
     void setItemActionListener(ActionListener listener);
 
-    void changeLabel(String text);
+    File showSaveFileChooser();
+
+    File showOpenFileChoose();
 
     String getEditText();
 

@@ -1,7 +1,9 @@
 package notepad.data.datasource;
 
-public interface LocalDataSource {
-    void saveText(String text);
+import java.io.File;
 
-    String getText();
+public interface LocalDataSource {
+    void saveText(String text, File path);
+
+    String getText(File path);
 }

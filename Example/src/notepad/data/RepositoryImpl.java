@@ -2,6 +2,8 @@ package notepad.data;
 
 import notepad.data.datasource.LocalDataSource;
 
+import java.io.File;
+
 public class RepositoryImpl implements Repository {
     private LocalDataSource localDataSource;
 
@@ -10,12 +12,12 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void save(String text) {
-        localDataSource.saveText(text);
+    public void save(String text, File path) {
+        localDataSource.saveText(text, path);
     }
 
     @Override
-    public String load() {
-        return localDataSource.getText();
+    public String load(File path) {
+        return localDataSource.getText(path);
     }
 }
