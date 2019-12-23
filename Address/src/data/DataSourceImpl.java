@@ -1,6 +1,9 @@
 package data;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import data.dao.AddressDataModel;
 
 import java.io.*;
@@ -16,19 +19,20 @@ import java.util.ArrayList;
 public class DataSourceImpl implements DataSource {
     private static DataSource INSTANCE = null;
     private final static String fname = "./juso.txt";
-    private ArrayList<AddressDataModel> listData;
+    private JsonArray listData;
     private BufferedWriter bw;
     private BufferedReader br;
 
     private DataSourceImpl() {
-        listData = new ArrayList<>();
+        listData = new JsonArray();
         try {
             br = new BufferedReader(new FileReader(fname));
             String strline = "";
             while ((strline = br.readLine()) != null) {
-                System.out.println(strline);
+
                 AddressDataModel model = new Gson().fromJson(strline, AddressDataModel.class);
-                listData.add(model);
+                listData.add(new Gson().toJson(model));
+                System.out.println(new Gson().toJson(listData.get(0)));
             }
             br.close();
         } catch (IOException e) {
@@ -41,7 +45,7 @@ public class DataSourceImpl implements DataSource {
         listData.remove(index);
         try {
             bw = new BufferedWriter(new FileWriter(fname, false));
-            for (AddressDataModel model : listData) {
+            for (JsonElement model : listData) {
                 bw.write(new Gson().toJson(model));
                 bw.newLine();
             }
@@ -53,7 +57,7 @@ public class DataSourceImpl implements DataSource {
 
     @Override
     public void insert(AddressDataModel model) {
-        listData.add(model);
+        listData.add(new Gson().toJson(model));
         String json = new Gson().toJson(model);
         try {
             bw = new BufferedWriter(new FileWriter(fname, true));
