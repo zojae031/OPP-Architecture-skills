@@ -9,4 +9,8 @@ public interface View {
 
     void changeLabel(String text);
 
+    String getEditText();
+
+    void setEditText(String text);
+
 }

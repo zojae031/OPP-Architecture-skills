@@ -18,14 +18,32 @@ public class MainController implements Controller, ActionListener {
 
     public void init() {
         view.initView();
-        view.setItemActionListener(this::actionPerformed);
+        view.setItemActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String commend = e.getActionCommand();
-        if (commend.equals("닫기")) System.exit(0);
-        else view.changeLabel(commend);
+        System.out.println(commend);
+        switch (commend) {
+            case "닫기":
+                System.exit(0);
+                break;
+            case "새 문서":
+                view.changeLabel(commend);
+                break;
+            case "저장":
+                String text = view.getEditText();
+                repository.save(text);
+                break;
+            case "열기":
+                String loadData = repository.load();
+                view.setEditText(loadData);
+                break;
+            default:
+                view.changeLabel(commend);
+                break;
+        }
 
     }
 }
