@@ -15,6 +15,8 @@ public class AddressPanel extends JPanel implements View {
     private JTextField txtSearch, txtAddName, txtAddAge, txtAddPhoneNumber;
     private JButton btnSearch, btnAddInfo, btnDelete;
     private AddressController LAddress;
+    private JTable tableAddress;
+    private
 
     public AddressPanel() {
         setBackground(Color.white);
@@ -23,6 +25,7 @@ public class AddressPanel extends JPanel implements View {
         setInitSearchPanel();
         setInitAddInfoPanel();
         LAddress = new AddressController(this);
+        setInitTableAddress();
     }
 
     private void setInitSearchPanel() {
@@ -64,6 +67,11 @@ public class AddressPanel extends JPanel implements View {
         pnlAddNDeleteAddress.add(btnAddInfo);
         pnlAddNDeleteAddress.add(new JLabel("||"));
         pnlAddNDeleteAddress.add(btnDelete);
+    }
+
+    private void setInitTableAddress(){
+        tableAddress = new JTable();
+        add(tableAddress,BorderLayout.CENTER);
     }
 
     //=============Getter And Setter===================
