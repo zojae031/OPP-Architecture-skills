@@ -25,7 +25,7 @@ public class AddressPanel extends JPanel {
 
         txtSearch = new JTextField(15);
 
-        btnSearch = new JButton("Search");
+        btnSearch = new JButton("Seach");
 
         pnlSearch.add(comboBox);
         pnlSearch.add(txtSearch);
