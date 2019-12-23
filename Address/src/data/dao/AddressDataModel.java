@@ -1,13 +1,13 @@
 package data.dao;
 
 public class AddressDataModel {
-    public int age;
-    public String name;
-    public String Phonenumber;
+    public int age = 0;
+    public String name = "NONE";
+    public String PhoneNumber = "NONE";
 
-    public AddressDataModel() {
-        age = 0;
-        name = "NONE";
-        Phonenumber = "NONE";
+    public AddressDataModel(final int age, final String name, final String phonenumber) {
+        this.age = age;
+        this.name = name;
+        this.PhoneNumber = phonenumber;
     }
 }
