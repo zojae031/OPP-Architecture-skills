@@ -2,11 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddressPanel extends JPanel {
-    private JPanel pnlSearch,pnlAddAddress;
-    JComboBox comboBox;
-    JTextField txtSearch,txtAddName,txtAddAge,txtAddPhoneNumber;
-    JButton btnSearch,btnAddInfo;
-    JList list;
+    private JPanel pnlSearch, pnlAddNDeleteAddress;
+    private JComboBox comboBox;
+    private JTextField txtSearch,txtAddName,txtAddAge,txtAddPhoneNumber;
+    private JButton btnSearch,btnAddInfo,btnDelete;
+    private AddressControler LAddress;
 
     public AddressPanel(){
         setBackground(Color.white);
@@ -33,8 +33,8 @@ public class AddressPanel extends JPanel {
     }
 
     private void setInitAddInfoPanel(){
-        pnlAddAddress = new JPanel();
-        add(pnlAddAddress,BorderLayout.SOUTH);
+        pnlAddNDeleteAddress = new JPanel();
+        add(pnlAddNDeleteAddress,BorderLayout.SOUTH);
 
 
         txtAddName = new JTextField(4);
@@ -48,9 +48,34 @@ public class AddressPanel extends JPanel {
 
         btnAddInfo = new JButton("Register");
 
-        pnlAddAddress.add(txtAddName);
-        pnlAddAddress.add(txtAddAge);
-        pnlAddAddress.add(txtAddPhoneNumber);
-        pnlAddAddress.add(btnAddInfo);
+        pnlAddNDeleteAddress.add(txtAddName);
+        pnlAddNDeleteAddress.add(txtAddAge);
+        pnlAddNDeleteAddress.add(txtAddPhoneNumber);
+        pnlAddNDeleteAddress.add(btnAddInfo);
     }
+
+    //=============Getter And Setter===================
+    public JPanel getPnlSearch() { return pnlSearch; }
+    public JPanel getPnlAddandDeleteAddress() { return pnlAddNDeleteAddress; }
+    public JComboBox getComboBox() { return comboBox; }
+    public JTextField getTxtSearch() { return txtSearch; }
+    public JTextField getTxtAddName() { return txtAddName; }
+    public JTextField getTxtAddAge() { return txtAddAge; }
+    public JTextField getTxtAddPhoneNumber() { return txtAddPhoneNumber; }
+    public JButton getBtnSearch() { return btnSearch; }
+    public JButton getBtnAddInfo() { return btnAddInfo; }
+    public JButton getBtnDelete() { return btnDelete; }
+
+    public void setBtnAddInfo(JButton btnAddInfo) { this.btnAddInfo = btnAddInfo; }
+    public void setBtnDelete(JButton btnDelete) { this.btnDelete = btnDelete; }
+    public void setBtnSearch(JButton btnSearch) { this.btnSearch = btnSearch; }
+    public void setComboBox(JComboBox comboBox) { this.comboBox = comboBox; }
+    public void setPnlAddNDeleteAddress(JPanel pnlAddandDeleteAddress) { this.pnlAddNDeleteAddress = pnlAddandDeleteAddress; }
+    public void setPnlSearch(JPanel pnlSearch) { this.pnlSearch = pnlSearch; }
+    public void setTxtAddAge(JTextField txtAddAge) { this.txtAddAge = txtAddAge; }
+    public void setTxtAddName(JTextField txtAddName) { this.txtAddName = txtAddName; }
+    public void setTxtAddPhoneNumber(JTextField txtAddPhoneNumber) { this.txtAddPhoneNumber = txtAddPhoneNumber; }
+    public void setTxtSearch(JTextField txtSearch) { this.txtSearch = txtSearch; }
+    //=============Getter And Setter===================
+
 }
