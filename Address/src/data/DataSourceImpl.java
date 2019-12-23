@@ -70,6 +70,8 @@ public class DataSourceImpl implements DataSource {
         }
     }
 
+    public JsonArray getListData() { return listData; }
+
     @Override
     public String select() {
         File f = new File(fname);

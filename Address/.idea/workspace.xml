@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e47f7da5-70f4-4313-ab28-741784c0d604" name="Default Changelist" comment="Create Delete Function &amp; Fix Error at BufferedWriter">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/juso.txt" beforeDir="false" afterPath="$PROJECT_DIR$/juso.txt" afterDir="false" />
+    <list default="true" id="4cd83910-8f80-4d03-a297-83e85845f40b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/data/DataSourceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/DataSourceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/AddressPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/AddressPanel.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

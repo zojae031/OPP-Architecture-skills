@@ -1,5 +1,6 @@
 package data;
 
+import com.google.gson.JsonArray;
 import data.dao.AddressDataModel;
 
 public interface DataSource {
@@ -11,4 +12,5 @@ public interface DataSource {
 
     void delete(int index);
 
+    public JsonArray getListData();
 }

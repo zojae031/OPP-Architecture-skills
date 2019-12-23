@@ -1,10 +1,18 @@
 package ui;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import controller.AddressController;
+import data.DataSourceImpl;
 import data.dao.AddressDataModel;
 import util.AddressConstants;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -16,7 +24,7 @@ public class AddressPanel extends JPanel implements View {
     private JButton btnSearch, btnAddInfo, btnDelete;
     private AddressController LAddress;
     private JTable tableAddress;
-    private
+    private DefaultTableModel tableModel;
 
     public AddressPanel() {
         setBackground(Color.white);
@@ -69,9 +77,20 @@ public class AddressPanel extends JPanel implements View {
         pnlAddNDeleteAddress.add(btnDelete);
     }
 
-    private void setInitTableAddress(){
+    private void setInitTableAddress() {
+        JsonArray data = DataSourceImpl.getInstance().getListData();
         tableAddress = new JTable();
         add(tableAddress,BorderLayout.CENTER);
+        tableModel = new DefaultTableModel();
+        tableAddress.setModel(tableModel);
+        for(JsonElement obj : data){
+            String substr = obj.getAsString();
+            String str[] = new String[3];
+            str[1] = substr.substring(substr.charAt(':'),substr.charAt(','));
+            str[0] = substr.substring(substr.charAt(':'),substr.charAt(','));
+            str[2] = substr.substring(substr.charAt(':'),substr.charAt(','));
+            tableModel.addRow(str);
+        }
     }
 
     //=============Getter And Setter===================
@@ -160,7 +179,7 @@ public class AddressPanel extends JPanel implements View {
     }
 
     // TODO: 2019-12-24 Have to Fix return
-    public int getJTableIndex(){return 0;}
+    public int getJTableIndex(){return tableAddress.getSelectedRow();}
     //=============Getter And Setter===================
 
 
@@ -179,5 +198,23 @@ public class AddressPanel extends JPanel implements View {
     @Override
     public void showSelectList(AddressDataModel model) {
         System.out.println(model.name + " " + model.age + " " + model.PhoneNumber);
+    }
+
+    private class AddressTable extends AbstractTableModel{
+
+        @Override
+        public int getRowCount() {
+            return 0;
+        }
+
+        @Override
+        public int getColumnCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getValueAt(int i, int i1) {
+            return null;
+        }
     }
 }
