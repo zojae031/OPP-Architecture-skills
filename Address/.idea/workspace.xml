@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e47f7da5-70f4-4313-ab28-741784c0d604" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Address/AddressConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Address/AddressConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Address/AddressDataModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Address/AddressPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Address/AddressPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Address/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Address/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddressConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/util/AddressConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AddressPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/ui/AddressPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

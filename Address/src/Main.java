@@ -1,3 +1,5 @@
+import ui.AddressPanel;
+
 import javax.swing.*;
 
 public class Main {
