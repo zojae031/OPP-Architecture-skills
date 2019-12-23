@@ -23,4 +23,6 @@ public interface View {
     void changeTitle(String text);
 
     void setFontSize(int size);
+
+    void showDialog();
 }

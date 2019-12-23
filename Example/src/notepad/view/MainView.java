@@ -2,6 +2,7 @@ package notepad.view;
 
 import notepad.data.dao.EditDao;
 import notepad.data.dao.FileDao;
+import notepad.data.dao.ToolbarDao;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +15,12 @@ import java.io.File;
 
 public class MainView extends JFrame implements View {
     private JMenuBar menuBar = new JMenuBar();
-
-    FileDao fileDao = new FileDao();
-    EditDao editDao = new EditDao();
+    private final FileDao fileDao = new FileDao();
+    private final EditDao editDao = new EditDao();
+    private final ToolbarDao toolbarDao = new ToolbarDao();
 
     private final JTextArea textArea = new JTextArea();
 
-    JToolBar toolBar = new JToolBar();
-    JButton item = new JButton("item");
 
     private static final int BASE_FONT_SIZE = 12;
 
@@ -31,7 +30,7 @@ public class MainView extends JFrame implements View {
         menuSetting();
         toolbarSetting();
         textAreaSetting();
-        setSize(300, 200);
+        setSize(500, 500);
         setVisible(true);
     }
 
@@ -62,8 +61,18 @@ public class MainView extends JFrame implements View {
     }
 
     private void toolbarSetting() {
-        add(toolBar, BorderLayout.NORTH);
-        toolBar.add(item);
+        add(toolbarDao.toolBar, BorderLayout.NORTH);
+        toolbarDao.toolBar.add(toolbarDao.newItem);
+        toolbarDao.toolBar.add(toolbarDao.saveItem);
+        toolbarDao.toolBar.add(toolbarDao.openItem);
+        toolbarDao.toolBar.add(toolbarDao.closeItem);
+        toolbarDao.toolBar.addSeparator(new Dimension(10, 10));
+        toolbarDao.toolBar.add(toolbarDao.small);
+        toolbarDao.toolBar.add(toolbarDao.normal);
+        toolbarDao.toolBar.add(toolbarDao.larger);
+        toolbarDao.toolBar.addSeparator(new Dimension(10, 10));
+        toolbarDao.toolBar.add(toolbarDao.info);
+
     }
 
     private void textAreaSetting() {
@@ -84,13 +93,17 @@ public class MainView extends JFrame implements View {
         editDao.editMenu.add(editDao.small);
         editDao.editMenu.add(editDao.normal);
         editDao.editMenu.add(editDao.larger);
-
         setJMenuBar(menuBar);
     }
 
     @Override
     public int newFile() {
         return JOptionPane.showConfirmDialog(this, "저장하시겠습니까?");
+    }
+
+    @Override
+    public void showDialog() {
+        JOptionPane.showMessageDialog(this, "재영이꺼");
     }
 
     @Override
@@ -103,6 +116,15 @@ public class MainView extends JFrame implements View {
         editDao.small.addActionListener(listener);
         editDao.normal.addActionListener(listener);
         editDao.larger.addActionListener(listener);
+
+        toolbarDao.newItem.addActionListener(listener);
+        toolbarDao.saveItem.addActionListener(listener);
+        toolbarDao.openItem.addActionListener(listener);
+        toolbarDao.closeItem.addActionListener(listener);
+        toolbarDao.small.addActionListener(listener);
+        toolbarDao.normal.addActionListener(listener);
+        toolbarDao.larger.addActionListener(listener);
+        toolbarDao.info.addActionListener(listener);
     }
 
     @Override

@@ -52,8 +52,9 @@ public class MainController implements Controller, ActionListener {
             case "크게":
                 view.setFontSize(+2);
                 break;
+            case "프로그램 정보":
+                view.showDialog();
             default:
-
                 break;
         }
     }
