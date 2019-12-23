@@ -28,16 +28,6 @@ public class MainView extends JFrame implements View {
 
 
     @Override
-    public File showSaveFileChooser() {
-        JFileChooser fileChooser = new JFileChooser();
-        File path = null;
-        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-            path = fileChooser.getSelectedFile();
-        }
-        return path;
-    }
-
-    @Override
     public void initView() {
         defaultSetting();
         menuSetting();
@@ -57,10 +47,20 @@ public class MainView extends JFrame implements View {
         return path;
     }
 
+    @Override
+    public File showSaveFileChooser() {
+        JFileChooser fileChooser = new JFileChooser("./");
+        File path = null;
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            path = fileChooser.getSelectedFile();
+        }
+        return path;
+    }
+
     private void defaultSetting() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("NotePad");
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
     }
 
     private void toolbarSetting() {
