@@ -1,13 +1,22 @@
 package ui;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import controller.AddressController;
+import data.DataSource;
+import data.DataSourceImpl;
 import data.dao.AddressDataModel;
 import util.AddressConstants;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class AddressPanel extends JPanel implements View {
     private JPanel pnlSearch, pnlAddNDeleteAddress;
@@ -15,7 +24,9 @@ public class AddressPanel extends JPanel implements View {
     private JTextField txtSearch, txtAddName, txtAddAge, txtAddPhoneNumber;
     private JButton btnSearch, btnAddInfo, btnDelete;
     private AddressController LAddress;
-
+    private JTable Table;
+    private DefaultTableModel model;
+    private TableRowSorter<DefaultTableModel> tableSorter;
     public AddressPanel() {
         setBackground(Color.white);
         setPreferredSize(new Dimension(500, 500));
@@ -23,6 +34,7 @@ public class AddressPanel extends JPanel implements View {
         setInitSearchPanel();
         setInitAddInfoPanel();
         LAddress = new AddressController(this);
+        setInitJTable();
     }
 
     private void setInitSearchPanel() {
@@ -66,7 +78,43 @@ public class AddressPanel extends JPanel implements View {
         pnlAddNDeleteAddress.add(btnDelete);
     }
 
+    private void setInitJTable(){
+        ArrayList<AddressDataModel> datalist = DataSourceImpl.getInstance().getListData();
+        Table = new JTable();
+
+        model = new DefaultTableModel(AddressConstants.SearchFILTER,0);
+        for(AddressDataModel data : datalist) {
+            model.addRow(new Object[]{data.name,data.age,data.PhoneNumber});
+            System.out.println(data.name);
+        }
+        Table.setBackground(Color.white);
+        Table.setModel(model);
+        add(Table,BorderLayout.CENTER);
+        TableColumn column;
+        column = Table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(100);
+        column = Table.getColumnModel().getColumn(1);
+        column.setPreferredWidth(100);
+        column = Table.getColumnModel().getColumn(2);
+        column.setPreferredWidth(300);
+    }
+
+    //================================================
+    public void filter(){
+        String text = txtSearch.getText();
+        int criteria = comboBox.getSelectedIndex();
+        if(text == null)
+            tableSorter.setRowFilter(null); //검색 중이 아닌 경우 모든 항목을 표시
+        else
+            tableSorter.setRowFilter(RowFilter.regexFilter(text, criteria)); //실제 검색 실행하여 결과 표시
+    }
+
     //=============Getter And Setter===================
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
     public JPanel getPnlSearch() {
         return pnlSearch;
     }
@@ -152,7 +200,7 @@ public class AddressPanel extends JPanel implements View {
     }
 
     // TODO: 2019-12-24 Have to Fix return
-    public int getJTableIndex(){return 0;}
+    public int getJTableIndex(){return Table.getSelectedRow();}
     //=============Getter And Setter===================
 
 

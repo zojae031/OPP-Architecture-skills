@@ -18,21 +18,19 @@ import java.io.*;
 public class DataSourceImpl implements DataSource {
     private static DataSource INSTANCE = null;
     private final static String fname = "./juso.txt";
-    private JsonArray listData;
+    private ArrayList<AddressDataModel> listData;
     private BufferedWriter bw;
     private BufferedReader br;
 
     private DataSourceImpl() {
-        listData = new JsonArray();
+        listData = new ArrayList<>();
         try {
             br = new BufferedReader(new FileReader(fname));
             String strline = "";
             while ((strline = br.readLine()) != null) {
                 AddressDataModel model = new Gson().fromJson(strline, AddressDataModel.class);
-                listData.add(new Gson().toJson(model));
-            }
-            for (JsonElement data : listData) {
-                System.out.println(new Gson().toJson(data));
+
+                listData.add(model);
             }
             br.close();
         } catch (IOException e) {
@@ -45,7 +43,7 @@ public class DataSourceImpl implements DataSource {
         listData.remove(index);
         try {
             bw = new BufferedWriter(new FileWriter(fname, false));
-            for (JsonElement model : listData) {
+            for(AddressDataModel model : listData) {
                 bw.write(new Gson().toJson(model));
                 bw.newLine();
             }
@@ -57,7 +55,8 @@ public class DataSourceImpl implements DataSource {
 
     @Override
     public void insert(AddressDataModel model) {
-        listData.add(new Gson().toJson(model));
+        listData.add(model);
+
         String json = new Gson().toJson(model);
         try {
             bw = new BufferedWriter(new FileWriter(fname, true));
@@ -70,6 +69,10 @@ public class DataSourceImpl implements DataSource {
     }
 
     @Override
+    public ArrayList<AddressDataModel> getListData() {
+        return listData;
+    }
+
     public String select() {
        System.out.println(listData.toString());
 
