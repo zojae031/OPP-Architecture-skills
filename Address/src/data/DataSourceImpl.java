@@ -6,7 +6,6 @@ import com.google.gson.JsonElement;
 import data.dao.AddressDataModel;
 
 import java.io.*;
-import java.util.ArrayList;
 
 
 /**
@@ -30,6 +29,7 @@ public class DataSourceImpl implements DataSource {
             String strline = "";
             while ((strline = br.readLine()) != null) {
                 AddressDataModel model = new Gson().fromJson(strline, AddressDataModel.class);
+
                 listData.add(model);
             }
             br.close();
@@ -73,7 +73,6 @@ public class DataSourceImpl implements DataSource {
         return listData;
     }
 
-    @Override
     public String select() {
        System.out.println(listData.toString());
 
