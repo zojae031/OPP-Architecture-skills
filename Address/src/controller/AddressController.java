@@ -45,7 +45,7 @@ public class AddressController implements ActionListener, KeyListener {
         String phone = pnl.getTxtAddPhoneNumber().getText();
 
         AddressDataModel model = new AddressDataModel(age, name, phone);//TODO util class 분리 가능
-
+        pnl.getModel().addRow(new Object[]{model.name,model.age,model.PhoneNumber});
         dataSource.insert(model);
     }
 
@@ -62,7 +62,7 @@ public class AddressController implements ActionListener, KeyListener {
     private void delete(){
         int index = pnl.getJTableIndex();
         dataSource.delete(index);
-
+        pnl.getModel().removeRow(index);
     }
 
     @Override
@@ -74,15 +74,7 @@ public class AddressController implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         Object obj = e.getSource();
         if (obj == pnl.getTxtSearch()) {
-            if (pnl.getComboBoxIndex() == AddressConstants.SearchToName) {
-
-            }
-            if (pnl.getComboBoxIndex() == AddressConstants.SearchToAge) {
-
-            }
-            if (pnl.getComboBoxIndex() == AddressConstants.SearchToPhoneNumber) {
-
-            }
+            //pnl.filter();
         }
     }
 

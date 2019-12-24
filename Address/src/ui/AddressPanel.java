@@ -2,20 +2,21 @@ package ui;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import controller.AddressController;
+import data.DataSource;
 import data.DataSourceImpl;
 import data.dao.AddressDataModel;
 import util.AddressConstants;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class AddressPanel extends JPanel implements View {
     private JPanel pnlSearch, pnlAddNDeleteAddress;
@@ -23,9 +24,9 @@ public class AddressPanel extends JPanel implements View {
     private JTextField txtSearch, txtAddName, txtAddAge, txtAddPhoneNumber;
     private JButton btnSearch, btnAddInfo, btnDelete;
     private AddressController LAddress;
-    private JTable tableAddress;
-    private DefaultTableModel tableModel;
-
+    private JTable Table;
+    private DefaultTableModel model;
+    private TableRowSorter<DefaultTableModel> tableSorter;
     public AddressPanel() {
         setBackground(Color.white);
         setPreferredSize(new Dimension(500, 500));
@@ -33,7 +34,7 @@ public class AddressPanel extends JPanel implements View {
         setInitSearchPanel();
         setInitAddInfoPanel();
         LAddress = new AddressController(this);
-        setInitTableAddress();
+        setInitJTable();
     }
 
     private void setInitSearchPanel() {
@@ -77,23 +78,43 @@ public class AddressPanel extends JPanel implements View {
         pnlAddNDeleteAddress.add(btnDelete);
     }
 
-    private void setInitTableAddress() {
-        JsonArray data = DataSourceImpl.getInstance().getListData();
-        tableAddress = new JTable();
-        add(tableAddress,BorderLayout.CENTER);
-        tableModel = new DefaultTableModel();
-        tableAddress.setModel(tableModel);
-        for(JsonElement obj : data){
-            String substr = obj.getAsString();
-            String str[] = new String[3];
-            str[1] = substr.substring(substr.charAt(':'),substr.charAt(','));
-            str[0] = substr.substring(substr.charAt(':'),substr.charAt(','));
-            str[2] = substr.substring(substr.charAt(':'),substr.charAt(','));
-            tableModel.addRow(str);
+    private void setInitJTable(){
+        ArrayList<AddressDataModel> datalist = DataSourceImpl.getInstance().getListData();
+        Table = new JTable();
+
+        model = new DefaultTableModel(AddressConstants.SearchFILTER,0);
+        for(AddressDataModel data : datalist) {
+            model.addRow(new Object[]{data.name,data.age,data.PhoneNumber});
+            System.out.println(data.name);
         }
+        Table.setBackground(Color.white);
+        Table.setModel(model);
+        add(Table,BorderLayout.CENTER);
+        TableColumn column;
+        column = Table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(100);
+        column = Table.getColumnModel().getColumn(1);
+        column.setPreferredWidth(100);
+        column = Table.getColumnModel().getColumn(2);
+        column.setPreferredWidth(300);
+    }
+
+    //================================================
+    public void filter(){
+        String text = txtSearch.getText();
+        int criteria = comboBox.getSelectedIndex();
+        if(text == null)
+            tableSorter.setRowFilter(null); //검색 중이 아닌 경우 모든 항목을 표시
+        else
+            tableSorter.setRowFilter(RowFilter.regexFilter(text, criteria)); //실제 검색 실행하여 결과 표시
     }
 
     //=============Getter And Setter===================
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
     public JPanel getPnlSearch() {
         return pnlSearch;
     }
@@ -179,7 +200,7 @@ public class AddressPanel extends JPanel implements View {
     }
 
     // TODO: 2019-12-24 Have to Fix return
-    public int getJTableIndex(){return tableAddress.getSelectedRow();}
+    public int getJTableIndex(){return Table.getSelectedRow();}
     //=============Getter And Setter===================
 
 
@@ -198,23 +219,5 @@ public class AddressPanel extends JPanel implements View {
     @Override
     public void showSelectList(AddressDataModel model) {
         System.out.println(model.name + " " + model.age + " " + model.PhoneNumber);
-    }
-
-    private class AddressTable extends AbstractTableModel{
-
-        @Override
-        public int getRowCount() {
-            return 0;
-        }
-
-        @Override
-        public int getColumnCount() {
-            return 0;
-        }
-
-        @Override
-        public Object getValueAt(int i, int i1) {
-            return null;
-        }
     }
 }

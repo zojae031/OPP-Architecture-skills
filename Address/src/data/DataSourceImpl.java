@@ -3,7 +3,6 @@ package data;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import data.dao.AddressDataModel;
 
 import java.io.*;
@@ -20,20 +19,18 @@ import java.util.ArrayList;
 public class DataSourceImpl implements DataSource {
     private static DataSource INSTANCE = null;
     private final static String fname = "./juso.txt";
-    private JsonArray listData;
+    private ArrayList<AddressDataModel> listData;
     private BufferedWriter bw;
     private BufferedReader br;
 
     private DataSourceImpl() {
-        listData = new JsonArray();
+        listData = new ArrayList<>();
         try {
             br = new BufferedReader(new FileReader(fname));
             String strline = "";
             while ((strline = br.readLine()) != null) {
-
                 AddressDataModel model = new Gson().fromJson(strline, AddressDataModel.class);
-                listData.add(new Gson().toJson(model));
-                System.out.println(new Gson().toJson(listData.get(0)));
+                listData.add(model);
             }
             br.close();
         } catch (IOException e) {
@@ -46,7 +43,7 @@ public class DataSourceImpl implements DataSource {
         listData.remove(index);
         try {
             bw = new BufferedWriter(new FileWriter(fname, false));
-            for (JsonElement model : listData) {
+            for(AddressDataModel model : listData) {
                 bw.write(new Gson().toJson(model));
                 bw.newLine();
             }
@@ -58,7 +55,8 @@ public class DataSourceImpl implements DataSource {
 
     @Override
     public void insert(AddressDataModel model) {
-        listData.add(new Gson().toJson(model));
+        listData.add(model);
+
         String json = new Gson().toJson(model);
         try {
             bw = new BufferedWriter(new FileWriter(fname, true));
@@ -70,38 +68,16 @@ public class DataSourceImpl implements DataSource {
         }
     }
 
-    public JsonArray getListData() { return listData; }
+    @Override
+    public ArrayList<AddressDataModel> getListData() {
+        return listData;
+    }
 
     @Override
     public String select() {
-        File f = new File(fname);
-        String str = "";
+       System.out.println(listData.toString());
 
-        if (!f.exists()) {
-            try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(fname));
-                bw.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(fname));
-            for (int i = 1; ; i++) {
-                if (!br.ready()) break;
-                else {
-                    str = br.readLine();
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return str;
+        return "";
     }
 
     public static DataSource getInstance() {
